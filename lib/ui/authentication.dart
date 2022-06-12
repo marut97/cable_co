@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Authentication extends StatefulWidget {
   const Authentication({Key? key}) : super(key: key);
@@ -13,54 +14,102 @@ class _AuthenticationState extends State<Authentication> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          color: Colors.blueAccent,
-        ),
-        child: Column(
-          children: [
-            TextFormField(
-              controller: _emailField,
-              decoration: InputDecoration(
-                  hintText: "something@email.com",
-                  hintStyle: TextStyle(color: Colors.white),
-                  labelText: "Email",
-                  labelStyle: TextStyle(color: Colors.white)),
-            ),
-            TextFormField(
-                controller: _passwordField,
-                obscureText: true,
-                decoration: InputDecoration(
-                    hintText: "password",
-                    hintStyle: TextStyle(color: Colors.white),
-                    labelText: "Password",
-                    labelStyle: TextStyle(color: Colors.white))),
-            Container(
-              width: MediaQuery.of(context).size.width / 1.4,
-              height: 45,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  color: Colors.white),
-              child: MaterialButton(
-                onPressed: () {},
-                child: Text("Register"),
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/login_background.jpg"),
+                  fit: BoxFit.cover)),
+          child: Column(
+            children: [
+              Container(
+                  margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                  height: MediaQuery.of(context).size.height / 5,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/icons/logo.png"),
+                          fit: BoxFit.fitHeight))),
+              Container(
+                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  child: Text(
+                    "CableCo",
+                    style: GoogleFonts.courgette(fontSize: 40),
+                  )),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(right: 8),
+                    child: Icon(
+                      Icons.email_rounded,
+                      size: 32,
+                      color: Colors.blueGrey,
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.4,
+                    child: Flexible(
+                      child: TextField(
+                          controller: _emailField,
+                          obscureText: true,
+                          decoration: const InputDecoration(
+                            hintText: "Email",
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                          style: GoogleFonts.nunito(fontSize: 20)),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width / 1.4,
-              height: 45,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  color: Colors.white),
-              child: MaterialButton(
-                onPressed: () {},
-                child: Text("Register"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(right: 8),
+                    child: Icon(
+                      Icons.lock_rounded,
+                      size: 32,
+                      color: Colors.blueGrey,
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.4,
+                    child: Flexible(
+                      child: TextField(
+                          controller: _passwordField,
+                          obscureText: true,
+                          decoration: const InputDecoration(
+                            hintText: "Password",
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                          style: GoogleFonts.nunito(fontSize: 20)),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
+              Container(
+                margin: const EdgeInsets.all(10),
+                width: MediaQuery.of(context).size.width / 1.4,
+                height: 45,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.blueAccent),
+                child: MaterialButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Log In",
+                    style: GoogleFonts.nunito(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
