@@ -1,3 +1,5 @@
+import 'package:cable_co/net/flutterfire.dart';
+import 'package:cable_co/ui/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -98,9 +100,47 @@ class _AuthenticationState extends State<Authentication> {
                     borderRadius: BorderRadius.circular(15.0),
                     color: Colors.blueAccent),
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    bool loggedIn =
+                        await logIn(_emailField.text, _passwordField.text);
+                    if (loggedIn) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeView(),
+                          ));
+                    }
+                  },
                   child: Text(
                     "Log In",
+                    style: GoogleFonts.nunito(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.all(10),
+                width: MediaQuery.of(context).size.width / 1.4,
+                height: 45,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.blueAccent),
+                child: MaterialButton(
+                  onPressed: () async {
+                    bool signedUp =
+                        await signUp(_emailField.text, _passwordField.text);
+                    if (signedUp) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeView(),
+                          ));
+                    }
+                  },
+                  child: Text(
+                    "Sign Up",
                     style: GoogleFonts.nunito(
                         fontSize: 20,
                         color: Colors.white,
